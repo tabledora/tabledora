@@ -1,0 +1,5 @@
+{
+    "rust-analyzer.linkedProjects": [
+        "./tabledora-app/src-tauri/Cargo.toml"
+    ]
+}

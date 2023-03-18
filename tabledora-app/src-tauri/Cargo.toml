@@ -1,0 +1,21 @@
+[package]
+name = "tabledora-app"
+version = "0.0.0"
+description = "A desktop application for exploratory data analysis and visualization."
+authors = ["Bobby Chen <chenbobby@fastmail.com>"]
+license = "Apache-2.0"
+repository = "https://github.com/tabledora/tabledora/tabledora-app"
+edition = "2021"
+
+[build-dependencies]
+tauri-build = { version = "1.2", features = ["isolation"] }
+
+[dependencies]
+tauri = { version = "1.2", features = ["isolation", "shell-open"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+[features]
+# this feature is used for production builds or when `devPath` points to the filesystem
+# DO NOT REMOVE!!
+custom-protocol = ["tauri/custom-protocol"]
