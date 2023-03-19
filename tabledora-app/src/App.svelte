@@ -1,9 +1,9 @@
 <script lang="ts">
-  import Window from "./lib/Window.svelte";
+  import Workspace from "./lib/Workspace.svelte";
 </script>
 
 <main>
-  <Window />
+  <Workspace />
 </main>
 
 <style>

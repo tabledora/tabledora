@@ -11,21 +11,15 @@
     "version": "0.0.0"
   },
   "tauri": {
-    "pattern": {
-      "use": "isolation",
-      "options": {
-        "dir": "../dist-isolation"
-      }
-    },
     "allowlist": {
-      "all": false,
-      "shell": {
-        "all": false,
+      "dialog": {
         "open": true
       }
     },
     "bundle": {
       "active": true,
+      "category": "Productivity",
+      "copyright": "© 2023 Bobby Chen. All rights reserved.",
       "icon": [
         "icons/32x32.png",
         "icons/128x128.png",
@@ -34,7 +28,15 @@
         "icons/icon.ico"
       ],
       "identifier": "com.tabledora.app",
+      "shortDescription": "Exploratory data analysis and visualization",
+      "longDescription": "Tabledora is a desktop application for exploratory data analysis and visualization.",
       "targets": "all"
+    },
+    "pattern": {
+      "use": "isolation",
+      "options": {
+        "dir": "../dist-isolation"
+      }
     },
     "security": {
       "csp": null
@@ -42,14 +44,6 @@
     "updater": {
       "active": false
     },
-    "windows": [
-      {
-        "fullscreen": false,
-        "resizable": true,
-        "title": "tabledora-app",
-        "width": 800,
-        "height": 600
-      }
-    ]
+    "windows": []
   }
 }
