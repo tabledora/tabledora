@@ -1,10 +1,25 @@
 <script lang="ts">
+  import { getContext } from "svelte";
+  import type { Writable } from "svelte/store";
   import type { FileTreeNode } from "../types";
 
   export let fileTreeNode: FileTreeNode;
   export let depth = 0;
-  async function handleClickFileTreeNode(event: MouseEvent) {
-    console.log(fileTreeNode.path);
+
+  const tabListStore = getContext("tabListStore") as Writable<string[]>;
+  const activeTabStore = getContext("activeTabStore") as Writable<string>;
+
+  function handleClickFileTreeNode(event: MouseEvent) {
+    if (fileTreeNode.children == null) {
+      tabListStore.update((tabList) => {
+        if (!tabList.includes(fileTreeNode.path)) {
+          return [...tabList, fileTreeNode.path];
+        }
+        return tabList;
+      });
+
+      activeTabStore.set(fileTreeNode.path);
+    }
   }
 </script>
 

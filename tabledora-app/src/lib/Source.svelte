@@ -1,27 +1,26 @@
 <script lang="ts">
-  import FileTree from "./FileTree.svelte";
   import type { FileTreeNode } from "../types";
   import { invoke } from "@tauri-apps/api";
-  export let source;
 
-  let promiseFileTreeNodes = invoke("list_children", {
+  export let source: string;
+
+  const fileTreeNodeListPromise = invoke("list_children", {
     root: source,
-  }).then((v) => {
-    console.log(v);
-    return v;
   }) as Promise<FileTreeNode[]>;
+
+  import FileTree from "./FileTree.svelte";
 </script>
 
 <div>
   <div class="bg-gray-700 px-1 py-0.5 text-xs text-white">
     <span>{source}</span>
   </div>
-  {#await promiseFileTreeNodes}
+  {#await fileTreeNodeListPromise}
     <div>
       <span>Loading...</span>
     </div>
-  {:then fileTreeNodes}
-    {#each fileTreeNodes as fileTreeNode (fileTreeNode.path)}
+  {:then fileTreeNodeList}
+    {#each fileTreeNodeList as fileTreeNode (fileTreeNode.path)}
       <FileTree {fileTreeNode} />
     {:else}
       <div>

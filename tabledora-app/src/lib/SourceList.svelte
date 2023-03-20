@@ -1,16 +1,17 @@
 <script lang="ts">
   import { invoke } from "@tauri-apps/api/tauri";
-  import Source from "./Source.svelte";
-  let sourceList = [];
+  let SourceList = [];
 
   async function handleClickButtonOpenFolder(event: MouseEvent) {
     let path: string = await invoke("open_local_folder");
-    if (path != null) sourceList = [path];
+    if (path != null) SourceList = [path];
   }
+
+  import Source from "./Source.svelte";
 </script>
 
 <div>
-  {#each sourceList as source, i (source)}
+  {#each SourceList as source, i (source)}
     <Source {source} />
   {:else}
     <div class="mt-4">
